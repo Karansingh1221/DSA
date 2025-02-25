@@ -15,7 +15,6 @@ public:
     int numEnclaves(vector<vector<int>>& grid) {
         int m=grid.size();
         int n=grid[0].size();
-        // vector<vector<bool>> visited(m,vector<bool>(n,false));
         for(int i=0;i<m;i++){
             if(grid[i][0]==1 ){
                 dfs(grid,i,0);
