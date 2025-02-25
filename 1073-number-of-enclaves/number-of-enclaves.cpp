@@ -7,10 +7,10 @@ public:
             return;
         }
         grid[i][j]=-1;
-        vector<pair<int,int>> dirs={{1,0},{0,1},{-1,0},{0,-1}};
-        for(auto [x,y] : dirs){
-            dfs(grid,x+i,y+j);
-        }
+        dfs(grid,i+1,j);
+        dfs(grid,i,j+1);
+        dfs(grid,i-1,j);
+        dfs(grid,i,j-1);
     }
     int numEnclaves(vector<vector<int>>& grid) {
         int m=grid.size();
