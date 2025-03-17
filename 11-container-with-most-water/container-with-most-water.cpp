@@ -5,8 +5,8 @@ public:
         int left=0;
         int right=n-1;
         int ans=0;
-        while(left<right){
-            ans=max(ans,min(height[right],height[left])*((right-left)));
+        while(left!=right){
+            ans=max(ans,min(height[left],height[right])*(right-left));
             if(height[left]<=height[right]){
                 left++;
             }else{
@@ -14,5 +14,6 @@ public:
             }
         }
         return ans;
+        
     }
 };
