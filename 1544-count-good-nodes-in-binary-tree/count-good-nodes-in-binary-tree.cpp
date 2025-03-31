@@ -21,13 +21,12 @@ public:
             int maxval=q.front().second;
             int size=q.size();
             q.pop();
-            // for(int i=0;i<size;i++){
-                if(temp->val>=maxval){
-                    count++;
-                    maxval=temp->val;
-                }
-                if(temp->left) q.push({temp->left,maxval});
-                if(temp->right) q.push({temp->right,maxval});
+            if(temp->val>=maxval){
+                count++;
+                maxval=temp->val;
+            }
+            if(temp->left) q.push({temp->left,maxval});
+            if(temp->right) q.push({temp->right,maxval});
             
         }
         return count;
