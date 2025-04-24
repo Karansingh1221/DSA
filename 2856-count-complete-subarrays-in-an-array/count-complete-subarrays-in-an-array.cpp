@@ -5,16 +5,6 @@ public:
         int count=0;  
         int dist=s.size();
         int n=nums.size();
-        // for(int i=0;i<n;i++){
-        //     unordered_set<int> st;
-        //     for(int j=i;j<n;j++){
-        //         st.insert(nums[j]);
-        //         if(st.size()==dist){
-        //         count++;
-        //     }
-        //     }
-            
-        // }
         unordered_map<int,int> mp;
         int left=0;
         for(int i=0;i<n;i++){
@@ -31,3 +21,13 @@ public:
         return count;
     }
 };
+        // for(int i=0;i<n;i++){
+        //     unordered_set<int> st;
+        //     for(int j=i;j<n;j++){
+        //         st.insert(nums[j]);
+        //         if(st.size()==dist){
+        //         count++;
+        //     }
+        //     }
+            
+        // }
