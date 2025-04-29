@@ -4,7 +4,7 @@ public:
         int n=nums.size();
         int x=*max_element(nums.begin(),nums.end());
         long long count=0;
-        long maxOccur=0;
+        int maxOccur=0;
         //Sliding window using map
         // unordered_map<int,int> mp;
         // int left=0;
