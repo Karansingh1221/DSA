@@ -3,9 +3,8 @@ public:
     int add(int n,int start,int end){
         int sum=0;
         string s=to_string(n);
-        while(start<end){
-            sum+=s[start]-'0';
-            start++;
+        for(int i=start;i<end;i++){
+            sum+=s[i]-'0';
         }
         return sum;
     }
