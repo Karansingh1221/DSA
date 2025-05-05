@@ -1,22 +1,19 @@
 class Solution {
 public:
-    int add(int n,int start,int end){
-        int sum=0;
-        string s=to_string(n);
-        for(int i=start;i<end;i++){
-            sum+=s[i]-'0';
-        }
-        return sum;
-    }
     int countSymmetricIntegers(int low, int high) {
         int cnt=0;
         for(int i=low;i<=high;i++){
             string s=to_string(i);
             int length=s.size();
             if(length%2!=0) continue;
-            int last_half=add(i,0,length/2);
-            int first_half=add(i,length/2,length);
-            if(first_half==last_half){
+            int first=0,last=0;
+            for(int i=0;i<length/2;i++){
+                first+=s[i]-'0';
+            }
+            for(int i=length/2;i<s.size();i++){
+                last+=s[i]-'0';
+            }
+            if(first==last){
                 cnt++;
             }
         }
