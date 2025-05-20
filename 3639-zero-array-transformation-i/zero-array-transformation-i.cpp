@@ -29,7 +29,6 @@ public:
             cnt+=cmp[i];
             if(nums[i]>cnt) return false;
         }
-        return true;
-        
+        return true;   
     }
 };
