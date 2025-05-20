@@ -1,22 +1,6 @@
 class Solution {
 public:
-    // void solve(vector<int>& nums,int left,int right){
-    //     for(int i=left;i<=right;i++){
-    //         if(nums[i]!=0){
-    //             nums[i]-=1;
-    //         }
-    //     }
-    // }
     bool isZeroArray(vector<int>& nums, vector<vector<int>>& queries) {
-        // for(int i=0;i<queries.size();i++){
-        //     solve(nums,queries[i][0],queries[i][1]);
-        // }
-        // for(int i=0;i<nums.size();i++){
-        //     if(nums[i]!=0){
-        //         return false;
-        //     }
-        // }
-        // return true;
         int n=nums.size();
         int m=queries.size();
         vector<int> cmp(n+1,0);
@@ -30,6 +14,6 @@ public:
             if(nums[i]>cnt) return false;
         }
         return true;
-           
+
     }
 };
