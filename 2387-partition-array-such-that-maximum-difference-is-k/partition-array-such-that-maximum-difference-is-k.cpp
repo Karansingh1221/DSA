@@ -33,20 +33,16 @@ public:
         // return count;  
 
         sort(nums.begin(), nums.end());
-    int count = 0;
-    int i = 0, n = nums.size();
-
-    while (i < n) {
-        int groupStart = nums[i];  // minimum in the group
-        count++;                   // one new group formed
-        i++;                       // at least one element in group
-
-        // Extend group while condition holds
-        while (i < n && nums[i] - groupStart <= k) {
-            i++;
+        int count = 0;
+        int i = 0, n = nums.size();
+        while (i < n) {
+            int groupStart = nums[i]; 
+            count++;                   
+            i++;                       
+            while (i < n && nums[i] - groupStart <= k) {
+                i++;
+            }
         }
-    }
-
-    return count;
+        return count;
     }
 };
