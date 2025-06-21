@@ -17,7 +17,8 @@ public:
             int total=v[i];
             for(int j=i+1;j<v.size();j++){
                 if(v[j]>range) total+=range;
-                else total+=v[j];
+                else total+=
+                v[j];
             }
             int remain=word.size()-total;
             ans=min(ans,remain);
