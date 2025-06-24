@@ -1,7 +1,7 @@
 class Solution {
 public:
-    bool solve(vector<int>& piles,int speed,int h){
-        int hours=0;
+    long long solve(vector<int>& piles,long long speed){
+        long long hours=0;
         int n=piles.size();
         for(int i=0;i<n;i++){
             if(piles[i]<speed){
@@ -11,24 +11,21 @@ public:
                 if(piles[i]%speed!=0) hours++;
             }
         }
-        if(hours<=h) return true;
-        else return false;
-        // return hours;
+        return hours;
     }
     int minEatingSpeed(vector<int>& piles, int h) {
         int n=piles.size();
-        int left=1;
-        int right=*max_element(piles.begin(),piles.end());
-        while(right-left>1){
-            int mid=left+(right-left)/2;
-            // int hours=solve(piles,mid);
-            if(solve(piles,mid,h)){
-                right=mid;
-            }else{
+        long long left=1;
+        long long right=*max_element(piles.begin(),piles.end());
+        while(left<=right){
+            long long mid=left+(right-left)/2;
+            long long hours=solve(piles,mid);
+            if(hours>h){
                 left=mid+1;
+            }else{
+                right=mid-1;
             }
         }
-        if(solve(piles,left,h)) return left;
-        else return right;
+        return left;
     }
 };
