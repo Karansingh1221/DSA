@@ -1,24 +1,25 @@
 class Solution {
 public:
-    void solve(string s,int& count,int index){
-        int left=index-1;
-        int right=index+1;
-        while(right<s.size() && s[right]==s[index]){
-            right++;
-            count++;
+    int countSubstrings(string s) {
+        int res = 0;
+
+        for (int i = 0; i < s.length(); i++) {
+            res += count_palindrome(s, i, i);
+            res += count_palindrome(s, i, i + 1);
         }
-        while(left>=0 && right<=s.size() && s[left]==s[right]){
+
+        return res;        
+    }
+
+private:
+    int count_palindrome(string s, int left, int right) {
+        int count = 0;
+        while (left >= 0 && right < s.length() && s[left] == s[right]) {
             count++;
             left--;
             right++;
         }
-    }
-    int countSubstrings(string s) {
-        int n=s.size();
-        int count=n;
-        for(int i=0;i<n;i++){
-            solve(s,count,i);
-        }
         return count;
     }
+
 };
