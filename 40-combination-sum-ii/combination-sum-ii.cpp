@@ -8,11 +8,9 @@ public:
         for(int i=ind;i<nums.size();i++){
             if(ind<i && nums[i]==nums[i-1]) continue;
             if(sum+nums[i]>target) break;
-            sum+=nums[i];
             temp.push_back(nums[i]);
-            solve(nums,v,i+1,sum,target,temp);
+            solve(nums,v,i+1,sum+nums[i],target,temp);
             temp.pop_back();
-            sum-=nums[i];
         }
     }
     vector<vector<int>> combinationSum2(vector<int>& candidates, int target) {
