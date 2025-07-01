@@ -1,17 +1,12 @@
 class Solution {
 public:
     int possibleStringCount(string word) {
-        int count=1;
-        int n=word.size();
-        int left=0;
-        while(left<n){
-            int length=0;
-            left++;
-            while(left<n && word[left]==word[left-1]){
-                left++;
-                length++;
+        int n = word.length();
+        int count = n;
+        for (int i = 1; i < n; i++) {
+            if (word[i] != word[i - 1]) {
+                count--;
             }
-            count+=length;
         }
         return count;
     }
