@@ -13,13 +13,11 @@ public:
             windsum+=nums[i];
         }
         int maxsum=sum-windsum;
-        cout<<maxsum<<endl;
         while(right<n-1){
             windsum-=nums[left];
             left++;
             right++;
             windsum+=nums[right];
-            cout<<sum-windsum<<endl;
             maxsum=max(sum-windsum,maxsum);
         }
         return maxsum;
