@@ -1,50 +1,29 @@
 class Solution {
 public:
+    bool check(vector<int>& diff,int i){
+        int n=diff.size();
+        int res=diff[i];
+        int temp=i+1;
+        while((temp%n)!=i){
+            if(res<0) return false;
+            res+=diff[temp%n];
+            temp++;
+        }
+        return true;
+    }
     int canCompleteCircuit(vector<int>& gas, vector<int>& cost) {
         int n=gas.size();
-        // vector<int> diff(n);
-        // vector<bool> res(n,true);
-        // for(int i=0;i<n;i++){
-        //     diff[i]=gas[i]-cost[i];
-        // }        
-        // int ans=-1;
-        // int i=0;
-        // while(i<n){
-        //     int sum=diff[i];
-        //     int j;
-        //     if(i==n-1){j=0;}
-        //     else{j=i+1;}
-        //     while(j!=i){
-        //         if(sum<0){
-        //             res[i]=false;
-        //             break;
-        //         }
-        //         sum+=diff[j];
-        //         if(j==n-1){
-        //             j=0;
-        //         }else{
-        //             j++;
-        //         }
-                
-        //     }
-        //     if(j==i && sum>=0) return i;
-        //     i++;
-        // }
-
-        // return -1;
-
-
-
-        int total_tank=0,curr_tank=0,start_index=0;
+        vector<int> diff(n);
         for(int i=0;i<n;i++){
-            int bal=gas[i]-cost[i];
-            total_tank+=bal;
-            curr_tank+=bal;
-            if(curr_tank<0){
-                start_index=i+1;
-                curr_tank=0;
+            diff[i]=gas[i]-cost[i];
+        }
+        int sum=accumulate(diff.begin(),diff.end(),0);
+        if(sum<0) return -1;
+        for(int i=0;i<n;i++){
+            if(diff[i]>0 && check(diff,i)){
+                return i;
             }
         }
-        return total_tank>=0 ? start_index:-1;
+        return 0;
     }
 };
