@@ -11,19 +11,6 @@
  */
 class Solution {
 public:
-    // void solve(TreeNode* root,int& val,TreeNode* prev){
-    //     if(root==NULL){
-    //         return ;
-    //     }
-    //     if(root->val<val){
-    //         swap(prev->val,root->val);
-    //         return ;
-    //     }
-    //     solve(root->left,val,prev);
-    //     prev=root;
-    //     val=root->val;
-    //     solve(root->right,val,prev);
-    // }
     vector<int> v;
     void inorder(TreeNode* root){
         if(root==NULL) return;
@@ -40,24 +27,25 @@ public:
         return;
     }
     void recoverTree(TreeNode* root) {
-        // int val=INT_MIN;
-        // TreeNode* prev=new TreeNode(0);
-        // solve(root,val,prev);
+
         inorder(root);
         int f=0,s=0;
         bool flag=false;
-        
         for(int i=1;i<v.size();i++){
-            if(v[i]<v[i-1]){
+            if(!flag && v[i]<v[i-1]){
                 f=v[i-1];
-                break;
+                s=v[i];
+                flag=true;
             }
-        }
-        for(int i=1;i<v.size();i++){
-            if(v[i]<v[i-1]){
+            else if(flag && v[i]<v[i-1]){
                 s=v[i];
             }
         }
+        // for(int i=1;i<v.size();i++){
+        //     if(v[i]<v[i-1]){
+        //         s=v[i];
+        //     }
+        // }
         TreeNode* first=NULL;
         TreeNode* second=NULL;
         search(root,first,second,f,s);
