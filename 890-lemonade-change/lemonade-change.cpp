@@ -9,12 +9,6 @@ public:
             else twen++;
             cash=(5*five)+(10*ten)+(20*twen);
             int remain=bills[i]-5;
-            if(remain>=20){
-                while(twen>0 && remain>=20){
-                    remain-=20;
-                    twen--;
-                }
-            }
             if(remain>=10){
                 while(ten>0 && remain>=10){
                     remain-=10;
