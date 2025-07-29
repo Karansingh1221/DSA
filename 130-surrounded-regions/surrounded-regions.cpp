@@ -9,9 +9,9 @@ public:
             int dx=i+pair.first;
             int dy=j+pair.second;
             if(dx>=0 && dx<m && dy>=0 && dy<n &&  !visited[dx][dy] && board[dx][dy]=='O'){
-                 visited[dx][dy]=true;
+                visited[dx][dy]=true;
                 dfs(board,dx,dy,visited);
-                }
+            }
         }
     }
     void solve(vector<vector<char>>& board) {
