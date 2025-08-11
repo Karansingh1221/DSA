@@ -1,33 +1,25 @@
 class Solution {
 public:
-    bool check(int start,vector<vector<int>> graph,vector<int>& col){
+    bool isBipartite(vector<vector<int>>& graph) {
+        int m=graph.size();
+        vector<int> col(m,-1);
+        int start=0;
+        col[start]=1;
         queue<int> q;
-        q.push(start);
-        col[start]=0;
+        for(int j=0;j<m;j++){
+        q.push(j);
         while(!q.empty()){
             int node=q.front();
             q.pop();
-            for(int j:graph[node]){
-                if(col[j]==-1){
-                    col[j]=!col[node];
-                    q.push(j);
+            for(int i:graph[node]){
+                if(col[i]==-1){
+                    col[i]=!col[node];
+                    q.push(i);
                 }
-                else if(col[j]==col[node]){
-                    return false;
-                }
+                if(col[i]==col[node]) return false;
             }
-        }
-        return true;
-    }
-    bool isBipartite(vector<vector<int>>& graph) {
-        vector<int> col(graph.size(),-1);
-        for(int i=0;i<graph.size();i++){
-            if(col[i]==-1){
-                if(check(i,graph,col)==false){
-                    return false;
-                }
-            }
-        }
+        }  
+        }    
         return true;
     }
 };
