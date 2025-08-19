@@ -13,7 +13,7 @@ public:
                 i++;
             }
             if(count>=3){
-                sum+=(count-1)*(count-2)/2;
+                sum+=(count * (count+1))/2 - 2*count +1;
             }
         }
         return sum;
