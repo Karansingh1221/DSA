@@ -1,13 +1,14 @@
 class Solution {
 public:
     void rotate(vector<vector<int>>& matrix) {
-        int n=matrix.size();
-        vector<vector<int>> arr(n,vector<int>(n));
-        for(int i=0;i<n;i++){
+        int m=matrix.size();
+        int n=matrix[0].size();
+        vector<vector<int>> mat(m,vector<int>(n,0));
+        for(int i=0;i<m;i++){
             for(int j=0;j<n;j++){
-                arr[j][n-1-i]=matrix[i][j];
+                mat[j][n-i-1]=matrix[i][j];
             }
         }
-        matrix=arr;
+        matrix=mat;
     }
 };
