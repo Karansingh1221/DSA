@@ -1,56 +1,49 @@
 class Solution {
 public:
+    string vow_rem(string word){
+        string s=word;
+        for(char& c:s){
+            if(c=='a' || c=='i' || c=='o' || c=='e' || c=='u'){
+                c='*';
+            }
+        }
+        return s;
+    }
+
+    string sens(string word){
+        string lower=word;
+        transform(lower.begin(),lower.end(),lower.begin(),::tolower);
+        return lower;
+    }
     vector<string> spellchecker(vector<string>& wordlist, vector<string>& queries) {
-        unordered_set<string> exactMatchSet(wordlist.begin(), wordlist.end());
-        unordered_map<string, string> caseInsensitiveMap;
-        unordered_map<string, string> vowelInsensitiveMap;
-
-        auto normalizeVowels = [](const string& word) {
-            string res = word;
-            for (char& c : res) {
-                if (c == 'a' || c == 'e' || c == 'i' || c == 'o' || c == 'u') {
-                    c = '*';
-                }
+        set<string> s(wordlist.begin(),wordlist.end());
+        unordered_map<string,string> lower_case;
+        unordered_map<string,string> vowel;
+        for(string word:wordlist){
+            string lower=sens(word);
+            string vow=vow_rem(lower);
+            if(!lower_case.count(lower)){
+                lower_case[lower]=word;
             }
-            return res;
-        };
-
-        for (string& word : wordlist) {
-            string lowerWord = word;
-            transform(lowerWord.begin(), lowerWord.end(), lowerWord.begin(), ::tolower);
-
-            if (!caseInsensitiveMap.count(lowerWord)) {
-                caseInsensitiveMap[lowerWord] = word;
-            }
-
-            string vowelNormalized = normalizeVowels(lowerWord);
-            if (!vowelInsensitiveMap.count(vowelNormalized)) {
-                vowelInsensitiveMap[vowelNormalized] = word;
+            if(!vowel.count(vow)){
+                vowel[vow]=word;
             }
         }
+        vector<string> v;
+        for(string q:queries){
+            string low=sens(q);
+            string vow=vow_rem(low);
 
-        vector<string> results;
-        for (string& query : queries) {
-            if (exactMatchSet.count(query)) {
-                results.push_back(query);
-                continue;
+            if(s.count(q)){
+                v.push_back(q);
+            }else if(lower_case.count(low)){
+                v.push_back(lower_case[low]);
+            }else if(vowel.count(vow)){
+                v.push_back(vowel[vow]);
+            }else{
+                v.push_back("");
             }
-
-            string lowerQuery = query;
-            transform(lowerQuery.begin(), lowerQuery.end(), lowerQuery.begin(), ::tolower);
-            if (caseInsensitiveMap.count(lowerQuery)) {
-                results.push_back(caseInsensitiveMap[lowerQuery]);
-                continue;
-            }
-
-            string vowelNormalized = normalizeVowels(lowerQuery);
-            if (vowelInsensitiveMap.count(vowelNormalized)) {
-                results.push_back(vowelInsensitiveMap[vowelNormalized]);
-                continue;
-            }
-
-            results.push_back(""); // No match
         }
-        return results;
+        return v;
     }
 };
